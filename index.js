@@ -6,7 +6,7 @@ const FS = require('fs');
 
 class BuildLib {
 
-  static fromPath(targPath, nameMatcher) {
+  static fromPath(targPath, matcher) {
     let controllers = {};
 
     let data = FS.readdirSync(targPath);
@@ -17,7 +17,7 @@ class BuildLib {
       let entry = FS.lstatSync(path);
 
       if (entry.isDirectory()) {
-        let contents = this.fromPath(path, nameMatcher);
+        let contents = this.fromPath(path, matcher);
 
         if (contents && Object.keys(contents).length > 0) {
           controllers[name] = contents;
@@ -26,7 +26,7 @@ class BuildLib {
       } else if (entry.isFile() && name[0] != '.') {
         let contents = require(path);
 
-        if (contents.name.match(nameMatcher)) {
+        if (!matcher || contents.name.match(matcher)) {
           controllers[contents.name] = contents;
         }
 
