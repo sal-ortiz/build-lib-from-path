@@ -19,14 +19,14 @@ class BuildLib {
       if (entry.isDirectory()) {
         let contents = this.fromPath(path, matcher);
 
-        if (contents && Object.keys(contents).length > 0) {
+        if (contents && !this.isEmpty(contents)) {
           controllers[name] = contents;
         }
 
       } else if (entry.isFile() && name[0] != '.') {
         let contents = require(path);
 
-        if (!matcher || contents.name.match(matcher)) {
+        if (contents.name && (!matcher || contents.name.match(matcher))) {
           controllers[contents.name] = contents;
         }
 
@@ -35,6 +35,10 @@ class BuildLib {
     }
 
     return controllers;
+  }
+
+  static isEmpty(obj) {
+    return Object.keys(obj).length < 1;
   }
 
 }
