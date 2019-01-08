@@ -32,6 +32,12 @@
     "implicit",
     "recursive",
     "build",
-    "opinionated"
+    "opinionated",
+    "framework",
+    "mvc",
+    "model",
+    "view",
+    "controller",
+    "express"
   ]
 }
