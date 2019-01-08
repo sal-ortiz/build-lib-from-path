@@ -7,18 +7,24 @@
     "node": "^8.12.0",
     "npm": "^5.6.0"
   },
-
+  "author": "Salvador Ortiz",
+  "contributors": [
+    "Salvador Ortiz <this.is.salvador.ortiz@gmail.com> (https://github.com/slackjockey/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slackjockey/build-lib-from-path.git"
+  },
   "license": "MIT",
-
   "devDependencies": {
     "jasmine": "^3.2.0"
   },
-
   "dependencies": {},
   "bundledDependencies": [],
-
   "directories.test": "spec",
-
+  "scripts": {
+    "test": "jasmine"
+  },
   "keywords": [
     "library",
     "lazy",
