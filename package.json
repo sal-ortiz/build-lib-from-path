@@ -1,7 +1,7 @@
 {
   "name": "build-lib-from-path",
   "description": "a simple tool to build a library from a given path",
-  "version": "0.0.01",
+  "version": "0.0.02",
   "main": "index.js",
   "engines": {
     "node": "^8.12.0",
