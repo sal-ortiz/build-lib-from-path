@@ -16,7 +16,6 @@ const BuildLib = require('build-lib-from-path');
 let path = './controllers';   // a target lib folder.
 
 let lib = BuildLib.fromPath(path);
-
 ```
 will recursively load all the modules in the given path, arranging them within the returned object per their directory structure.
 
