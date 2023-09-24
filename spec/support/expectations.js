@@ -1,42 +1,60 @@
 
 
 const Path = require('path');
-const fixturesPath = Path.join(__dirname, 'fixtures');
+const fixturesPath = Path.join(__dirname, 'fixtures', 'path');
 
-const ControllerBase = require(Path.join(fixturesPath, 'path', 'controllers', 'base.js'));
-const UserController = require(Path.join(fixturesPath, 'path', 'controllers', 'user.js'));
-const ProductController = require(Path.join(fixturesPath, 'path', 'controllers', 'product.js'));
+const ControllerBase = require(Path.join(fixturesPath, 'controllers', 'base.js'));
+const ProductController = require(Path.join(fixturesPath, 'controllers', 'product.js'));
+const UserControllerBase = require(Path.join(fixturesPath, 'controllers', 'user', 'base.js'));
+const UserActionsController = require(Path.join(fixturesPath, 'controllers', 'user', 'actions.js'));
 
-const HelperBase = require(Path.join(fixturesPath, 'path', 'helpers', 'base.js'));
-const UserHelper = require(Path.join(fixturesPath, 'path', 'helpers', 'user.js'));
-const ProductHelper = require(Path.join(fixturesPath, 'path', 'helpers', 'product.js'));
+const HelperBase = require(Path.join(fixturesPath, 'helpers', 'base.js'));
+const UserHelper = require(Path.join(fixturesPath, 'helpers', 'user.js'));
+const ProductHelper = require(Path.join(fixturesPath, 'helpers', 'product.js'));
+const ActionsHelperBase = require(Path.join(fixturesPath, 'helpers', 'actions', 'base.js'));
+const PunchHelper = require(Path.join(fixturesPath, 'helpers', 'actions', 'punch.js'));
+const KickHelper = require(Path.join(fixturesPath, 'helpers', 'actions', 'kick.js'));
 
-const Index = require(Path.join(fixturesPath, 'path', 'index.js'));
+const Index = require(Path.join(fixturesPath, 'index.js'));
 
 
 
 module.exports = {
 
   AllClasses: {
-    helpers: {
+    Helpers: {
       HelperBase: HelperBase,
       UserHelper: UserHelper,
       ProductHelper: ProductHelper,
+      Actions: {
+        HelperBase: ActionsHelperBase,
+        PunchHelper: PunchHelper,
+        KickHelper: KickHelper,
+      },
+
     },
 
-    controllers: {
+    Controllers: {
       ControllerBase: ControllerBase,
-      UserController: UserController,
       ProductController: ProductController,
+      User: {
+        UserControllerBase: UserControllerBase,
+        ActionsController: UserActionsController,
+      },
+
     },
 
   },
 
   ControllerClassesOnly: {
-    controllers: {
+    Controllers: {
       ControllerBase: ControllerBase,
-      UserController: UserController,
       ProductController: ProductController,
+      User: {
+        UserControllerBase: UserControllerBase,
+        ActionsController: UserActionsController,
+      },
+
     },
 
   },
@@ -59,9 +77,14 @@ module.exports = {
 //  },
 
   HelperClassesOnlyNoBase: {
-    helpers: {
+    Helpers: {
       UserHelper: UserHelper,
       ProductHelper: ProductHelper,
+      Actions: {
+        PunchHelper: PunchHelper,
+        KickHelper: KickHelper,
+      },
+
     },
 
   },

@@ -1,40 +1,45 @@
 
 const Path = require('path');
-const FS = require('fs');
-
+const File = require('fs');
 
 
 class BuildLib {
 
   static fromPath(targPath, matcher) {
-    let controllers = {};
+    let outpObj = {};
 
-    let data = FS.readdirSync(targPath);
+    let data = File.readdirSync(targPath);
 
     for (let idx = 0; idx < data.length; idx++) {
       let name = data[idx];
       let path = Path.join(targPath, name);
-      let entry = FS.lstatSync(path);
+      let entry = File.lstatSync(path);
 
       if (entry.isDirectory()) {
-        let contents = this.fromPath(path, matcher);
+        let contents = BuildLib.fromPath(path, matcher);
 
-        if (contents && !this.isEmpty(contents)) {
-          controllers[name] = contents;
+        if (!outpObj[name] && !BuildLib.isEmpty(contents)) {
+          let humanName = name[0].toUpperCase() + name.slice(1);
+
+          outpObj[humanName] = contents;
         }
 
-      } else if (entry.isFile() && name[0] != '.') {
+      } else if (entry.isFile() && !BuildLib.isDotFile(name)) {
         let contents = require(path);
 
         if (contents.name && (!matcher || contents.name.match(matcher))) {
-          controllers[contents.name] = contents;
+          outpObj[contents.name] = contents;
         }
 
       }
 
     }
 
-    return controllers;
+    return outpObj;
+  }
+
+  static isDotFile(name) {
+    return name[0] == '.';
   }
 
   static isEmpty(obj) {

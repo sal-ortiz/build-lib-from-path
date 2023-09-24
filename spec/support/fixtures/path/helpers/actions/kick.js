@@ -1,11 +1,12 @@
 
+
 const Path = require('path');
 const Base = require(Path.join(__dirname, 'base.js'));
 
 
-class UserController extends Base {
+class KickHelper extends Base {
   // intentionally left blank.
 }
 
 
-module.exports = UserController;
+module.exports = KickHelper;

@@ -15,10 +15,10 @@ const SpecHelper = require(Path.join(helpersPath, 'spec.js'));
 
 
 describe('BuildLib', () => {
+
   beforeEach(() => {
    jasmine.addMatchers(SpecHelper.matchers);
   });
-
 
   describe('the fromPath(...) function', () => {
     let result;
@@ -45,6 +45,7 @@ describe('BuildLib', () => {
     });
 
     describe('given a string matcher', () => {
+
       beforeEach(() => {
         result = BuildLib.fromPath(stubPath, 'Controller');
       });
@@ -65,8 +66,8 @@ describe('BuildLib', () => {
 
     });
 
-
     describe('given a regular expression matcher', () => {
+
       beforeEach(() => {
         result = BuildLib.fromPath(stubPath, /^\w+Helper$/);
       });

@@ -1,7 +1,7 @@
 {
   "name": "build-lib-from-path",
   "description": "a simple tool to build a library from a given path",
-  "version": "0.0.02",
+  "version": "0.0.1",
   "main": "build_lib.js",
   "author": "Salvador Ortiz",
   "repository": {
