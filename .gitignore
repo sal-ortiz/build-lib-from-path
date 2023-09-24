@@ -1,0 +1,9 @@
+# dependencies
+node_modules
+
+# editor aritifacts
+*.sw*
+
+# os artifacts
+.DS_Store
+desktop.ini
