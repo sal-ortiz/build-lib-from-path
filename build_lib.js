@@ -3,6 +3,7 @@ const Path = require('path');
 const File = require('fs');
 
 const Configuration = require('./lib/configuration.js');
+const Helpers = require('./lib/helpers.js');
 
 
 class BuildLib {
