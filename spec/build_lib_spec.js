@@ -1,6 +1,4 @@
 
-
-
 const Path = require('path');
 
 const supportPath = Path.join(__dirname, 'support');
@@ -20,18 +18,76 @@ describe('BuildLib', () => {
    jasmine.addMatchers(SpecHelper.matchers);
   });
 
+  afterEach(() => {
+    BuildLib.Configuration.namePrefix = undefined;
+    BuildLib.Configuration.nameSuffix = undefined;
+  });
+
   describe('the fromPath(...) function', () => {
     let result;
 
     describe('given no matcher', () => {
+
       beforeEach(() => {
         result = BuildLib.fromPath(stubPath);
       });
 
-      it('returns all of the found classes', () => {
-        let expectation = Expectations.AllClasses;
+      describe('given the camelCaseNames config option', () => {
 
-        expect(result).toEqual(expectation)
+        it('returns all of the found classes', () => {
+          let expectation = Expectations.AllClasses.CamelCase;
+
+          expect(result).toEqual(expectation)
+        });
+
+      });
+
+      describe('given the snakeCaseNames config option', () => {
+
+        beforeAll(() => {
+          BuildLib.Configuration.snakeCaseNames = true;
+        });
+
+        it('returns all of the found classes', () => {
+          let expectation = Expectations.AllClasses.SnakeCase;
+
+          expect(result).toEqual(expectation)
+        });
+
+      });
+
+      describe('given a defined prefix', () => {
+
+        beforeAll(() => {
+          BuildLib.Configuration.namePrefix = 'PREFIX';
+          BuildLib.Configuration.nameSuffix = undefined;
+
+          BuildLib.Configuration.camelCaseNames = true;
+        });
+
+        it('returns all of the found classes', () => {
+          let expectation = Expectations.AllClasses.WithPrefix;
+
+          expect(result).toEqual(expectation)
+        });
+
+      });
+
+      describe('given a defined suffix', () => {
+
+        beforeAll(() => {
+          BuildLib.Configuration.nameSuffix = 'SUFFIX';
+          BuildLib.Configuration.namePrefix = undefined;
+
+          BuildLib.Configuration.camelCaseNames = true;
+        });
+
+        it('returns all of the found classes', () => {
+          let expectation = Expectations.AllClasses.WithSuffix;
+
+          expect(result).toEqual(expectation)
+        });
+
       });
 
       it('ignores classes that have no exports', () => {

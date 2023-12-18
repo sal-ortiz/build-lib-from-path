@@ -1,5 +1,4 @@
 
-
 const Path = require('path');
 const fixturesPath = Path.join(__dirname, 'fixtures', 'path');
 
@@ -18,28 +17,108 @@ const KickHelper = require(Path.join(fixturesPath, 'helpers', 'actions', 'kick.j
 const Index = require(Path.join(fixturesPath, 'index.js'));
 
 
-
 module.exports = {
 
   AllClasses: {
-    Helpers: {
-      HelperBase: HelperBase,
-      UserHelper: UserHelper,
-      ProductHelper: ProductHelper,
-      Actions: {
-        HelperBase: ActionsHelperBase,
-        PunchHelper: PunchHelper,
-        KickHelper: KickHelper,
+
+    SnakeCase: {
+
+      helpers: {
+        helper_base: HelperBase,
+        user_helper: UserHelper,
+        product_helper: ProductHelper,
+        actions: {
+          helper_base: ActionsHelperBase,
+          punch_helper: PunchHelper,
+          kick_helper: KickHelper,
+        },
+
+      },
+
+      controllers: {
+        controller_base: ControllerBase,
+        product_controller: ProductController,
+        user: {
+          user_controller_base: UserControllerBase,
+          actions_controller: UserActionsController,
+        },
+
       },
 
     },
 
-    Controllers: {
-      ControllerBase: ControllerBase,
-      ProductController: ProductController,
-      User: {
-        UserControllerBase: UserControllerBase,
-        ActionsController: UserActionsController,
+    CamelCase: {
+
+      Helpers: {
+        HelperBase: HelperBase,
+        UserHelper: UserHelper,
+        ProductHelper: ProductHelper,
+        Actions: {
+          HelperBase: ActionsHelperBase,
+          PunchHelper: PunchHelper,
+          KickHelper: KickHelper,
+        },
+
+      },
+
+      Controllers: {
+        ControllerBase: ControllerBase,
+        ProductController: ProductController,
+        User: {
+          UserControllerBase: UserControllerBase,
+          ActionsController: UserActionsController,
+        },
+
+      },
+
+    },
+
+    WithPrefix: {
+      PREFIXHelpers: {
+        PREFIXHelperBase: HelperBase,
+        PREFIXUserHelper: UserHelper,
+        PREFIXProductHelper: ProductHelper,
+        PREFIXActions: {
+          PREFIXHelperBase: ActionsHelperBase,
+          PREFIXPunchHelper: PunchHelper,
+          PREFIXKickHelper: KickHelper,
+        },
+
+      },
+
+      PREFIXControllers: {
+        PREFIXControllerBase: ControllerBase,
+        PREFIXProductController: ProductController,
+        PREFIXUser: {
+          PREFIXUserControllerBase: UserControllerBase,
+          PREFIXActionsController: UserActionsController,
+        },
+
+      },
+
+    },
+
+    WithSuffix: {
+      HelpersSUFFIX: {
+        HelperBaseSUFFIX: HelperBase,
+        UserHelperSUFFIX: UserHelper,
+        ProductHelperSUFFIX: ProductHelper,
+        ActionsSUFFIX: {
+          HelperBaseSUFFIX: ActionsHelperBase,
+          PunchHelperSUFFIX: PunchHelper,
+          KickHelperSUFFIX: KickHelper,
+        },
+
+      },
+
+      ControllersSUFFIX: {
+        ControllerBaseSUFFIX: ControllerBase,
+        ProductControllerSUFFIX: ProductController,
+        UserSUFFIX: {
+          UserControllerBaseSUFFIX: UserControllerBase,
+          ActionsControllerSUFFIX: UserActionsController,
+        },
+
       },
 
     },
@@ -47,6 +126,7 @@ module.exports = {
   },
 
   ControllerClassesOnly: {
+
     Controllers: {
       ControllerBase: ControllerBase,
       ProductController: ProductController,
@@ -58,23 +138,6 @@ module.exports = {
     },
 
   },
-
-//  HelperClassesOnly: {
-//    helpers: {
-//      HelperBase: HelperBase,
-//      UserHelper: UserHelper,
-//      ProductHelper: ProductHelper,
-//    },
-//
-//  },
-
-//  ControllerClassesOnlyNoBase: {
-//    controllers: {
-//      UserController: UserController,
-//      ProductController: ProductController,
-//    },
-//
-//  },
 
   HelperClassesOnlyNoBase: {
     Helpers: {
@@ -88,6 +151,5 @@ module.exports = {
     },
 
   },
-
 
 };

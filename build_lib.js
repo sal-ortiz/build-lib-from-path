@@ -25,17 +25,19 @@ class BuildLib {
       if (entry.isDirectory()) {
         let contents = BuildLib.fromPath(path, matcher);
 
-        if (!outpObj[name] && !BuildLib.isEmpty(contents)) {
-          let humanName = name[0].toUpperCase() + name.slice(1);
+        if (!outpObj[name] && !Helpers.isEmpty(contents)) {
+          let processedName = BuildLib.processLibName(name);
 
-          outpObj[humanName] = contents;
+          outpObj[processedName] = contents;
         }
 
-      } else if (entry.isFile() && !BuildLib.isDotFile(name)) {
+      } else if (entry.isFile() && !Helpers.isDotFile(name)) {
         let contents = require(path);
 
         if (contents.name && (!matcher || contents.name.match(matcher))) {
-          outpObj[contents.name] = contents;
+          let processedName = BuildLib.processLibName(contents.name);
+
+          outpObj[processedName] = contents;
         }
 
       }
@@ -45,12 +47,27 @@ class BuildLib {
     return outpObj;
   }
 
-  static isDotFile(name) {
-    return name[0] == '.';
-  }
+  static processLibName(name) {
+    let outp = name;
 
-  static isEmpty(obj) {
-    return Object.keys(obj).length < 1;
+    if (Helpers.isSnakeCase(name) == true) {
+
+      if (Configuration.camelCaseNames == true) {
+        outp = Helpers.toCamelCase(name);
+      }
+
+    } else {
+
+      if (Configuration.snakeCaseNames == true) {
+        outp = Helpers.toSnakeCase(name);
+      }
+
+    }
+
+    let prefix = Configuration.namePrefix;
+    let suffix = Configuration.nameSuffix;
+
+    return prefix + outp + suffix;
   }
 
 }
