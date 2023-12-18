@@ -2,8 +2,14 @@
 const Path = require('path');
 const File = require('fs');
 
+const Configuration = require('./lib/configuration.js');
+
 
 class BuildLib {
+
+  static get Configuration() {
+    return Configuration
+  }
 
   static fromPath(targPath, matcher) {
     let outpObj = {};
